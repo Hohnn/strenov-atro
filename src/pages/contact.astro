@@ -1,0 +1,61 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import Footer from '../components/Footer.astro';
+import ContactForm from '../components/ContactForm.astro';
+---
+
+<Layout title="Contact St Rénov">
+	<Header/>
+	
+	<main>
+		<section class="container-lg my-5">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="rea">
+						<h1>Nous contacter</h1>
+						<p>Envoyez nous un mail pour plus d'informations</p>
+						<p>Ou par téléphone au <a href="tel:+0608485528">06.08.48.55.28</a></p>
+					</div>
+				</div>
+				<div class="col-md-6 gy-3 gy-md-0">
+					<ContactForm/>
+				</div>
+			</div>
+		</section>
+	</main>
+	<Footer/>
+</Layout>
+
+
+<style lang="scss">
+	@import '../layouts/variable';
+
+	section {
+		font-size: 1.2rem;
+	}
+
+	.rea {
+		background-color: $beige;
+		padding: 2rem;
+		border-radius: 2rem;
+		margin-inline: auto;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: center;
+		color: $brown;
+		a {
+			color: $brown;
+		}
+
+	}
+
+	h1 {
+		font-family: $font-family-serif;
+		font-size: 2.5rem;
+		font-weight: bold;
+	}
+</style>

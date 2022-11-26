@@ -1,0 +1,45 @@
+---
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+export interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<script src="https://kit.fontawesome.com/0b218996ae.js" crossorigin="anonymous"></script>
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
+
+<style lang="scss" is:global>
+	@import 'variable';
+
+	body {
+		background-color: #fffffe;
+		font-family: $font-family-sans;
+		color: $brown;
+	}
+
+	.btn-action {
+		background-color: $orange;
+		border: none;
+		padding: 0.4rem 1rem;
+		border-radius: 10px;
+		color: white;
+		font-family: $font-family-sans;
+		font-size: 1.2rem;
+	}
+
+</style>

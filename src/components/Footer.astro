@@ -1,0 +1,48 @@
+---
+import Button from '../components/Button.astro';
+---
+
+<footer>
+	<div class="container">
+		<div class="row">
+			<div class="col">
+				<div class="logo">ST Rénov</div>
+				<div class="tel">
+					<a href="tel:+0608485528">06.08.48.55.28</a>
+				</div>
+				<div class="mail">
+					<a href="mailto:ST.renov14@gamil.com?Subject=Client site web">ST.renov14@gmail.com</a>
+				</div>
+			</div>
+			<div class="col">
+				
+			</div>
+			<div class="col"></div>
+			<div class="col-12 text-center my-3">
+				<span >Copyright © 2022 ST RÉNOV</span>
+			</div>
+		</div>
+	</div>
+
+</footer>
+
+<style lang="scss">
+	@import '../layouts/variable';
+
+	footer {
+		background-color: $beige;
+		margin-top: 3rem;
+		padding-top: 2rem;
+		a {
+			color: black;
+			text-decoration: none;
+		}
+		.logo {
+			color: $brown;
+			font-weight: 500;
+			font-family: $font-family-serif;
+			font-size: 1.6rem;
+		}
+		
+	}
+</style>

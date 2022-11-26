@@ -1,0 +1,70 @@
+---
+import Button from '../components/Button.astro';
+---
+
+<header>
+	<div class="top">
+		<h3><small><a href="">Voir les dernières réalisations</a></small></h3>
+	</div>
+	<div class="navbar">
+		<a href="/">
+			<div class="logo">ST Rénov</div>
+		</a>
+		
+		<nav>
+			<a href="/">Home</a>
+			<a href="">Blog</a>
+			<a href="">About</a>
+			<Button href="/contact" title="Contact"></Button>
+		</nav>
+	</div>
+</header>
+
+<style lang="scss">
+	@import '../layouts/variable';
+
+	header {
+		.top {
+			background-color: $orange;
+			padding: 0.3rem;
+			text-align: center;
+			font-family: $font-family-sans;
+			a {
+				color: white;
+				font-size: 1.2rem;
+
+			}
+		}
+		.navbar {
+			padding: 1rem;
+			a {
+				text-decoration: none;
+			}
+			.logo {
+				color: $brown;
+				font-weight: 500;
+				font-family: $font-family-serif;
+				font-size: 1.6rem;
+			}
+			nav {
+				display: flex;
+				gap: 1.5rem;
+				font-size: 1.2rem;
+				align-items: center;
+				justify-content: space-between;
+				font-family: $font-family-sans;
+				a {
+					color: $brown;
+					text-decoration: none;
+					opacity: 0.72;
+					&:has(button) {
+						opacity: 1;
+					}
+					&:hover {
+						opacity: 1;
+					}
+				}
+			}
+		}
+	}
+</style>

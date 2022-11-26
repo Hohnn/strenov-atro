@@ -1,0 +1,184 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Button from '../components/Button.astro';
+import Card from '../components/Card.astro';
+import Footer from '../components/Footer.astro';
+
+---
+
+<Layout title="ST Rénov">
+	<Header/>
+	
+	<main>
+		<section class="hero container-lg">
+			<div class="row">
+				<div class="col-md-6">
+					<div class="hero-img">
+						<img src="../../public/assets/img/portaille.jpeg" alt="">
+						<img class="mini-logo" src="../../public/assets/img/logo.jpg" alt="">
+					</div>
+				</div>
+				<div class="col-md-6 g-5 g-md-2 d-flex">
+					<div class="hero-text px-lg-5">
+						<h1>Vos projets sont les miens</h1>
+						<p>Choisisez ST RÉNOV pour des solutions personnalisé à vos envies. </p>
+						<Button href="/work" title="Découvrir"/>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<section class="hero hero-rea mb-0">
+			<div class="container">
+				<p>Situé à Feuguerolles-Bully, à proximité de Caen (14), ST RENOV vous propose ses services pour tous vos projets en lien avec la menuiserie intérieure et extérieure.
+
+					Fort de nombreuses années d’expériences en entreprise. Thibault SAMSON gérant de l’entreprise, vous apportera conseils et solution technique.</p>
+			</div>
+
+		</section>
+
+		<section class="hero container-lg mt-4">
+			<div class="row">
+				<div class="col-md-6 g-5 g-md-2 d-flex">
+					<div class="hero-text hero-desc">
+						<ul>
+							<li><i class="me-3 fa-solid fa-hammer"></i>Menuiserie</li>
+							<li><i class="me-3 fa-solid fa-trowel-bricks"></i>Isolation</li>
+							<li><i class="me-3 fa-solid fa-pen-ruler"></i>Parquet</li>
+							<li><i class="me-3 fa-solid fa-pencil"></i>Aménagement intérieur</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-md-6">
+					<div class="hero-img">
+						<img src="../../public/assets/img/logo.jpg" alt="">
+					</div>
+				</div>
+				
+			</div>
+		</section>
+
+		<section class="post container-lg">
+			<div class="row gy-3">
+				<h2 class="col-12">Les dernière réalisations</h2>
+				<div class="col-lg-4">
+					<Card 
+						href="#" 
+						title="Odyssey Theme Has Officially Been Released!" 
+						body="To get started with the Odyssey Theme clone the Odyssey Theme Repository directly from GitHub or use one of the buttons below to quickly clone or deploy the theme’s code."
+						src="../../public/assets/img/portaille.jpeg"						
+						/>
+				</div>
+				<div class="col-lg-4">
+					<Card 
+						href="#" 
+						title="Odyssey Theme Has Officially Been Released!" 
+						body="To get started with the Odyssey Theme clone the Odyssey Theme Repository directly from GitHub or use one of the buttons below to quickly clone or deploy the theme’s code."
+						src="../../public/assets/img/portaille.jpeg"						
+						/>
+				</div>
+				<div class="col-lg-4">
+					<Card 
+						href="#" 
+						title="Odyssey Theme Has Officially Been Released!" 
+						body="To get started with the Odyssey Theme clone the Odyssey Theme Repository directly from GitHub or use one of the buttons below to quickly clone or deploy the theme’s code."
+						src="../../public/assets/img/portaille.jpeg"						
+						/>
+				</div>
+				<div class="col-12 fs-5 text-end my-3">
+					<Button href="/work" title="Voir plus"/>
+				</div>
+			</div>
+		</section>
+
+	</main>
+	<Footer/>
+</Layout>
+
+
+<style lang="scss">
+@import '../layouts/variable';
+@import '../layouts/mixin';
+
+.hero {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    @include media-min (md) {
+        margin-top: 4rem;
+        margin-bottom: 4rem;
+    }
+
+    .hero-img {
+        position: relative;
+        img {
+            width: 100%;
+            border-radius: 2rem;
+            object-fit: cover;
+        }
+        .mini-logo {
+            position: absolute;
+            width: 70px;
+            top: 5px;
+            left: 5px;
+            border-radius: 1.8rem 0 10px 0;
+            opacity: 0.8;
+        }
+    }
+    .hero-text {
+        font-size: 1.3rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        flex-grow: 1;
+        h1 {
+            font-size: 3rem;
+            font-family: $font-family-serif;
+            color: $brown;
+            font-weight: 600;
+
+            @include media-min (md) {
+                font-size: 4rem;
+            }
+        }
+    }
+    .hero-desc {
+        align-items: center;
+        ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            li {
+                margin: 1rem 0;
+                font-size: 1.8rem;
+                font-weight: bold;
+                color: $brown;
+            }
+        }
+    }
+    &.hero-rea {
+        margin-top: 5rem;
+        background-color: $beige;
+        padding: 3rem 0;
+        font-size: 1.2rem;
+        p {
+            margin: 0;
+            max-width: 850px;
+            text-align: center;
+            line-height: 1.8;
+            margin-inline: auto;
+            padding: 0;
+            font-weight: bold;
+        }
+    }
+}
+
+.post {
+    h2 {
+        font-family: $font-family-serif;
+        color: $brown;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+}
+</style>
