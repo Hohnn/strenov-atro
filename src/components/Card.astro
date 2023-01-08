@@ -1,27 +1,28 @@
 ---
-export interface Props {
-	title: string;
-	body: string;
-	href: string;
-	src: string;
-}
+const { post } = Astro.props;
+let images = post.attributes.images
 
-const { href, title, body, src } = Astro.props;
+const thumb = images.data
+console.log(thumb);
+console.log(typeof(thumb));
+
+const API_URL = import.meta.env.PUBLIC_POKEAPI;
 ---
-
-<li class="link-card">
-	<a href={href}>
-		<div class="card-img">
-			<img src={src} alt="preview">
-		</div>
-		<h2>
-			{title}
-		</h2>
-		<p>
-			{body}
-		</p>
-	</a>
-</li>
+<div class="col-lg-4">
+	<article class="link-card">
+		<a href="#">
+			<div class="card-img">
+				<img src={images[0]} alt="preview">
+			</div>
+			<h2>
+				{post.attributes.title}
+			</h2>
+			<p>
+				{post.attributes.content}
+			</p>
+		</a>
+	</article>
+</div>
 <style lang="scss">
 	@import '../layouts/variable';
 

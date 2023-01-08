@@ -1,0 +1,23 @@
+@import '../layouts/variable';
+
+.BlogGrid {
+    nav {
+        display: flex;
+        flex-wrap: wrap;
+        &>* {
+            margin-right: 1rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.25s;
+            border-radius: 8px;
+            cursor: pointer;
+            &:hover {
+                background-color: $orange;
+                color: white;
+            }
+        }
+        .active {
+            background-color: $orange;
+            color: white;
+        }
+    }
+}

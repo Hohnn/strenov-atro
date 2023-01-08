@@ -1,0 +1,135 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import BlogGrid from "../../components/BlogGrid.jsx"
+
+export async function getStaticPaths() {
+	const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts`).then(res => res.json()).then(res => res.data)
+	return  posts.map(post =>  ({params : {slug:post.attributes.slug}}))
+}
+const {slug} =  Astro.params
+
+const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populate=*`).then(res => res.json()).then(res => res.data)
+
+const post  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?filters[slug]=${slug}&populate=*`).then(res => res.json()).then(res => res.data[0])
+
+const published = new Date(post.attributes.publishedAt).toLocaleDateString('fr-FR', {year: 'numeric', month: 'long', day: 'numeric'})
+
+const images = post.attributes.images.data
+
+const API_URL = import.meta.env.PUBLIC_POKEAPI;
+---
+
+<Layout title="Contact St Rénov">
+	<Header/>
+	
+	<main>
+		<section class="container-lg my-5" id="body-container">
+			<div class="row">
+				<div class="col-12">
+					<div class="hero">
+						<h1>{post.attributes.title}</h1>
+						<span>{`Publié le ${published}`}</span>
+					</div>
+				</div>
+				<div class="col-12 my-4">
+					<p class="m-0">{post.attributes.content}</p>
+				</div>
+				{images && images.map((el, key) => {
+					return (
+						<div class={((key + 1) % 3 == 0 ? 'col-md-12 ' : "col-md-6 ") + "g-3"}>
+							<img src={el.attributes.url} class={`img-fluid rounded workImg ` + ((key + 1) % 3 == 0 ? 'big' : '')} alt={post.attributes.title + key}>
+						</div>
+					)
+				})}
+
+				<div class="col-12 mt-5">
+					<BlogGrid posts={posts} title={'Les autres réalisations'} limit={3} client:visible/>
+				</div>
+				
+			</div>
+		</section>
+	</main>
+	<Footer/>
+</Layout>
+
+<style lang="scss">
+	@import '../../layouts/variable';
+	.workImg {
+		object-fit: contain;
+	}
+	.big {
+		aspect-ratio: 16/9;
+		object-fit: cover;
+	}
+	.carousel-container {
+		max-height: 100vh;
+		.carousel-horizon {
+			scroll-behavior: smooth;
+			left: 0;
+			position: absolute;
+  			overflow-x: scroll;
+			height: 100vh;
+			width: 100vw;
+			display: flex;
+			img {
+				width: 100%;
+				max-height: 100vh;
+				margin-right: 10px;
+			}
+		}
+	}
+
+	body {
+		overflow-x: hidden;
+	}
+
+	section {
+		font-size: 1.2rem;
+	}
+
+	.rea {
+		background-color: $beige;
+		padding: 2rem;
+		border-radius: 2rem;
+		margin-inline: auto;
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		justify-content: center;
+		color: $brown;
+		a {
+			color: $brown;
+		}
+
+		img {
+			mix-blend-mode: color-burn;
+			width: clamp(100px, 200px, 300px);
+		}
+
+	}
+	.hero {
+		position: relative;
+		background-color: $beige;
+		border-radius: 2rem;
+		padding: 1rem;
+		height: 200px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		h1 {
+			font-family: $font-family-serif;
+			font-size: 2.5rem;
+			font-weight: bold;
+			text-align: center;
+		}
+		span {
+			position: absolute;
+			bottom: 1rem;
+			left: 2rem;
+			font-size: 1rem;
+		}
+	}
+
+</style>

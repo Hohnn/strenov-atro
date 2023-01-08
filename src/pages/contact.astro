@@ -1,10 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Button from '../components/Button.astro';
 import Card from '../components/Card.astro';
 import Footer from '../components/Footer.astro';
-import ContactForm from '../components/ContactForm.astro';
+import EmailContactForm from '../components/EmailContactForm.jsx';
 ---
 
 <Layout title="Contact St Rénov">
@@ -15,13 +14,14 @@ import ContactForm from '../components/ContactForm.astro';
 			<div class="row">
 				<div class="col-md-6">
 					<div class="rea">
+						
 						<h1>Nous contacter</h1>
 						<p>Envoyez nous un mail pour plus d'informations</p>
 						<p>Ou par téléphone au <a href="tel:+0608485528">06.08.48.55.28</a></p>
 					</div>
 				</div>
 				<div class="col-md-6 gy-3 gy-md-0">
-					<ContactForm/>
+					<EmailContactForm client:load/>
 				</div>
 			</div>
 		</section>
@@ -49,6 +49,11 @@ import ContactForm from '../components/ContactForm.astro';
 		color: $brown;
 		a {
 			color: $brown;
+		}
+
+		img {
+			mix-blend-mode: color-burn;
+			width: clamp(100px, 200px, 300px);
 		}
 
 	}

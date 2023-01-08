@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Button from '../components/Button.astro';
+import Button from '../components/Button.jsx';
 import Card from '../components/Card.astro';
 import Footer from '../components/Footer.astro';
+import BlogGrid from "../components/BlogGrid.jsx"
 
+const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populate=*`).then(res => res.json()).then(res => res.data)
 ---
 
 <Layout title="ST Rénov">
@@ -15,15 +17,15 @@ import Footer from '../components/Footer.astro';
 			<div class="row">
 				<div class="col-md-6">
 					<div class="hero-img">
-						<img src="../../public/assets/img/portaille.jpeg" alt="">
-						<img class="mini-logo" src="../../public/assets/img/logo.jpg" alt="">
+						<img src="/assets/img/portaille.jpeg" alt="">
+						<img class="mini-logo" src="/assets/img/logo.jpg" alt="">
 					</div>
 				</div>
 				<div class="col-md-6 g-5 g-md-2 d-flex">
 					<div class="hero-text px-lg-5">
 						<h1>Vos projets sont les miens</h1>
 						<p>Choisisez ST RÉNOV pour des solutions personnalisé à vos envies. </p>
-						<Button href="/work" title="Découvrir"/>
+						<Button href="/realisations" title="Découvrir"/>
 					</div>
 				</div>
 			</div>
@@ -32,7 +34,6 @@ import Footer from '../components/Footer.astro';
 		<section class="hero hero-rea mb-0">
 			<div class="container">
 				<p>Situé à Feuguerolles-Bully, à proximité de Caen (14), ST RENOV vous propose ses services pour tous vos projets en lien avec la menuiserie intérieure et extérieure.
-
 					Fort de nombreuses années d’expériences en entreprise. Thibault SAMSON gérant de l’entreprise, vous apportera conseils et solution technique.</p>
 			</div>
 
@@ -52,49 +53,26 @@ import Footer from '../components/Footer.astro';
 				</div>
 				<div class="col-md-6">
 					<div class="hero-img">
-						<img src="../../public/assets/img/logo.jpg" alt="">
+						<img src="/assets/img/logo.jpg" alt="">
 					</div>
 				</div>
 				
 			</div>
 		</section>
 
-		<section class="post container-lg">
-			<div class="row gy-3">
-				<h2 class="col-12">Les dernière réalisations</h2>
-				<div class="col-lg-4">
-					<Card 
-						href="#" 
-						title="Odyssey Theme Has Officially Been Released!" 
-						body="To get started with the Odyssey Theme clone the Odyssey Theme Repository directly from GitHub or use one of the buttons below to quickly clone or deploy the theme’s code."
-						src="../../public/assets/img/portaille.jpeg"						
-						/>
-				</div>
-				<div class="col-lg-4">
-					<Card 
-						href="#" 
-						title="Odyssey Theme Has Officially Been Released!" 
-						body="To get started with the Odyssey Theme clone the Odyssey Theme Repository directly from GitHub or use one of the buttons below to quickly clone or deploy the theme’s code."
-						src="../../public/assets/img/portaille.jpeg"						
-						/>
-				</div>
-				<div class="col-lg-4">
-					<Card 
-						href="#" 
-						title="Odyssey Theme Has Officially Been Released!" 
-						body="To get started with the Odyssey Theme clone the Odyssey Theme Repository directly from GitHub or use one of the buttons below to quickly clone or deploy the theme’s code."
-						src="../../public/assets/img/portaille.jpeg"						
-						/>
-				</div>
-				<div class="col-12 fs-5 text-end my-3">
-					<Button href="/work" title="Voir plus"/>
-				</div>
-			</div>
+		<section class="blogList container-lg">
+			<BlogGrid posts={posts} limit={3} title={'Les dernères réalisations'} client:load/>
+			
 		</section>
+
+
+
 
 	</main>
 	<Footer/>
 </Layout>
+
+
 
 
 <style lang="scss">

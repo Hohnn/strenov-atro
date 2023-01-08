@@ -1,0 +1,28 @@
+---
+import BlogGridItem from './BlogGridItem';
+import Card from './Card.astro';
+const categorys  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/categories`).then(res => res.json()).then(res => res.data)
+
+const { posts } = Astro.props;
+---
+
+<section class="post container-lg">
+	<div class="row gy-3">
+		<nav class="col-12">
+			<h2>Les dernière réalisations</h2>
+			{categorys && categorys.map((cat, key) => <h2 >{cat.attributes.name}</h2>)}
+		</nav>
+		{posts && posts.length > 0 ? posts.map((post, key) => <BlogGridItem post={post}  />) : 'No posts founds'}
+	</div>
+</section>
+
+<style lang="scss">
+	@import '../layouts/variable';
+
+	nav {
+		display: flex;
+		&>* {
+			margin-right: 1rem;
+		}
+	}
+</style>
