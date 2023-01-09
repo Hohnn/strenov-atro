@@ -5,7 +5,7 @@ export default function BlogGridItem({ post }) {
 	let img = post.attributes.cover.data
 	let thumb
 	if (img) {
-		thumb = img.attributes.url
+		thumb = img.attributes.formats.small.url
 	}
 	let date = new Date(post.attributes.publishedAt).toLocaleDateString('fr-FR', {year: 'numeric', month: 'long'})
 	const API_URL = import.meta.env.PUBLIC_POKEAPI;

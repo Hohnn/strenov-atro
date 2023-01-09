@@ -38,13 +38,6 @@ const EmailContactForm = () => {
      });
  };
 
- function testMail(e) {
-    e.preventDefault();
-    console.log('SUCCESS!');
-    notify()
-    spinner.classList.remove('d-none')
- }
-
  function resetForm (){
     const inputName = document.getElementById('name')
     inputName.value = ''
@@ -75,7 +68,7 @@ const EmailContactForm = () => {
         </div>
         <div className='contact-btn'>
             <button type='submit' className='btn-action' >Envoyer</button>
-            <div id='spinner' class="lds-ring d-none"><div></div><div></div><div></div><div></div></div>
+            <div id='spinner' className="lds-ring d-none"><div></div><div></div><div></div><div></div></div>
         </div>
         
    </form>

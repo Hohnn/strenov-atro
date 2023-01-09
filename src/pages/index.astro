@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Button from '../components/Button.jsx';
-import Card from '../components/Card.astro';
 import Footer from '../components/Footer.astro';
 import BlogGrid from "../components/BlogGrid.jsx"
 
@@ -17,7 +16,7 @@ const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populat
 			<div class="row">
 				<div class="col-md-6">
 					<div class="hero-img">
-						<img src="/assets/img/portaille.jpeg" alt="">
+						<img src="/assets/img/portaille_light2.jpg" alt="">
 						<img class="mini-logo" src="/assets/img/logo.jpg" alt="">
 					</div>
 				</div>
@@ -61,7 +60,7 @@ const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populat
 		</section>
 
 		<section class="blogList container-lg">
-			<BlogGrid posts={posts} limit={3} title={'Les dernères réalisations'} client:load/>
+			<BlogGrid posts={posts} limit={3} title={'Les dernères réalisations'} client:visible/>
 			
 		</section>
 

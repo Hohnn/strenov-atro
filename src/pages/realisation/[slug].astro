@@ -4,7 +4,9 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import BlogGrid from "../../components/BlogGrid.jsx"
 
+
 export async function getStaticPaths() {
+
 	const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts`).then(res => res.json()).then(res => res.data)
 	return  posts.map(post =>  ({params : {slug:post.attributes.slug}}))
 }
@@ -36,10 +38,11 @@ const API_URL = import.meta.env.PUBLIC_POKEAPI;
 				<div class="col-12 my-4">
 					<p class="m-0">{post.attributes.content}</p>
 				</div>
-				{images && images.map((el, key) => {
+				{images && images.map((img, key) => {
+					
 					return (
 						<div class={((key + 1) % 3 == 0 ? 'col-md-12 ' : "col-md-6 ") + "g-3"}>
-							<img src={el.attributes.url} class={`img-fluid rounded workImg ` + ((key + 1) % 3 == 0 ? 'big' : '')} alt={post.attributes.title + key}>
+							<img src={(key + 1) % 3 == 0 ? img.attributes.url : img.attributes.formats.large.url } data-zoomable data-zoom-src={img.attributes.url} class={`img-fluid rounded workImg ` + ((key + 1) % 3 == 0 ? 'big' : '')} alt={post.attributes.title + ' image ' + (key + 1)}>
 						</div>
 					)
 				})}
@@ -54,14 +57,20 @@ const API_URL = import.meta.env.PUBLIC_POKEAPI;
 	<Footer/>
 </Layout>
 
+<script>
+	import mediumZoom from 'medium-zoom'
+	mediumZoom(document.querySelectorAll('[data-zoomable]'), {margin: 48})	
+</script>
+
 <style lang="scss">
 	@import '../../layouts/variable';
 	.workImg {
 		object-fit: contain;
 	}
 	.big {
-		aspect-ratio: 16/9;
+		aspect-ratio: 16/8;
 		object-fit: cover;
+		width: 100%;
 	}
 	.carousel-container {
 		max-height: 100vh;

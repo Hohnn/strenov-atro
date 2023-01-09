@@ -1,10 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
-import Button from '../components/Button.astro';
-import Card from '../components/Card.astro';
 import Footer from '../components/Footer.astro';
-import ContactForm from '../components/ContactForm.astro';
 import BlogGrid from "../components/BlogGrid.jsx"
 
 const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populate=*`).then(res => res.json()).then(res => res.data)
