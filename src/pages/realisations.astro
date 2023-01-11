@@ -24,7 +24,7 @@ const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populat
 					<p>Voici quelques-unes de nos réalisations les plus récentes. Nous avons travaillé sur de nombreux projets en étroite collaboration avec nos clients pour comprendre leurs besoins et leur offrir des solutions sur mesure qui répondent à leurs attentes.</p>
 				</div>
 				<div class="col-12 mt-3">
-					<BlogGrid posts={posts} title={'Les dernères réalisations'} limit={1000} client:load/>
+					<BlogGrid posts={posts} title={} limit={1000} client:load/>
 				</div>
 			</div>
 		</section>

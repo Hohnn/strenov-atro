@@ -4,7 +4,8 @@ import Header from '../components/Header.astro';
 import Button from '../components/Button.jsx';
 import Footer from '../components/Footer.astro';
 import BlogGrid from "../components/BlogGrid.jsx"
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHammer, faTrowelBricks, faPenRuler, faPencil } from '@fortawesome/free-solid-svg-icons'
 const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populate=*`).then(res => res.json()).then(res => res.data)
 ---
 
@@ -16,14 +17,14 @@ const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populat
 			<div class="row">
 				<div class="col-md-6">
 					<div class="hero-img">
-						<img src="/assets/img/portaille_light2.jpg" alt="">
-						<img class="mini-logo" src="/assets/img/logo.jpg" alt="">
+						<img src="/assets/img/portaille_light2.jpg" alt="hero image portaille strenov">
+						<img class="mini-logo" src="/assets/img/logo.jpg" alt="logo strenov watermark">
 					</div>
 				</div>
 				<div class="col-md-6 g-5 g-md-2 d-flex">
 					<div class="hero-text px-lg-5">
 						<h1>Vos projets sont les miens</h1>
-						<p>Choisisez ST RÉNOV pour des solutions personnalisé à vos envies. </p>
+						<h2>Choisisez ST RÉNOV pour des solutions personnalisé à vos envies. </h2>
 						<Button href="/realisations" title="Découvrir"/>
 					</div>
 				</div>
@@ -43,16 +44,20 @@ const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populat
 				<div class="col-md-6 g-5 g-md-2 d-flex">
 					<div class="hero-text hero-desc">
 						<ul>
-							<li><i class="me-3 fa-solid fa-hammer"></i>Menuiserie</li>
-							<li><i class="me-3 fa-solid fa-trowel-bricks"></i>Isolation</li>
-							<li><i class="me-3 fa-solid fa-pen-ruler"></i>Parquet</li>
-							<li><i class="me-3 fa-solid fa-pencil"></i>Aménagement intérieur</li>
+							<li><FontAwesomeIcon icon={faHammer} className="fs-6" />
+                                Menuiserie</li>
+							<li><FontAwesomeIcon icon={faTrowelBricks} className="fs-6"/>
+                                Isolation</li>
+							<li><FontAwesomeIcon icon={faPenRuler} className="fs-6"/>
+                                Parquet</li>
+							<li><FontAwesomeIcon icon={faPencil} className="fs-6"/>
+                                Aménagement intérieur</li>
 						</ul>
 					</div>
 				</div>
 				<div class="col-md-6">
 					<div class="hero-img">
-						<img src="/assets/img/logo.jpg" alt="">
+						<img src="/assets/img/logo.jpg" alt="logo_big strenov">
 					</div>
 				</div>
 				
@@ -108,6 +113,13 @@ const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populat
         flex-direction: column;
         justify-content: center;
         flex-grow: 1;
+        h2 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            font-family: $font-family-sans;
+            padding-bottom: 0.5rem;
+        }
+        
         h1 {
             font-size: 3rem;
             font-family: $font-family-serif;
@@ -130,6 +142,10 @@ const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populat
                 font-size: 1.8rem;
                 font-weight: bold;
                 color: $brown;
+                svg {
+                    height: 20px;
+                    margin-right: 0.5rem;
+                }
             }
         }
     }

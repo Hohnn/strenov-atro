@@ -21,6 +21,7 @@ const published = new Date(post.attributes.publishedAt).toLocaleDateString('fr-F
 const images = post.attributes.images.data
 
 const API_URL = import.meta.env.PUBLIC_POKEAPI;
+
 ---
 
 <Layout title="Contact St Rénov">
@@ -46,7 +47,9 @@ const API_URL = import.meta.env.PUBLIC_POKEAPI;
 						</div>
 					)
 				})}
-
+				<div class="col-12">
+					<img src="" alt="">
+				</div>
 				<div class="col-12 mt-5">
 					<BlogGrid posts={posts} title={'Les autres réalisations'} limit={3} client:visible/>
 				</div>
