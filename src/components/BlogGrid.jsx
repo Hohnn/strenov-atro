@@ -40,7 +40,7 @@ export default function BlogGrid({ posts, limit, title }) {
 			<div className="row gy-3">
 				<h2>{title}</h2>
 				<nav className="col-12">
-					<span className='active' onClick={() => handleCat("all")} data-catid="all">Tous</span>
+					<span className='active' onClick={() => handleCat("all")} data-catid="all">Tout</span>
 					{categorys && categorys.map((cat, key) => <span key={key} onClick={() => handleCat(cat.id)} data-catid={cat.id}>{cat.attributes.name}</span>)}
 				</nav>
 				{postToShow && postToShow.length > 0 ? postToShow.map((post, key) => key < limit ? <BlogGridItem post={post} key={key} /> : null) : (<p>Aucune réalisation</p>)}
