@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import BlogGrid from "../components/BlogGrid.jsx"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHammer, faTrowelBricks, faPenRuler, faPencil } from '@fortawesome/free-solid-svg-icons'
-const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populate=*`).then(res => res.json()).then(res => res.data)
+/* const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populate=*&sort=publishedAt:desc`).then(res => res.json()).then(res => res.data) */
 ---
 
 <Layout title="ST Rénov">
@@ -65,7 +65,7 @@ const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populat
 		</section>
 
 		<section class="blogList container-lg">
-			<BlogGrid posts={posts} limit={3} title={'Les dernères réalisations'} client:visible/>
+			<BlogGrid cat={} limit={3} title={'Les dernères réalisations'} client:visible/>
 			
 		</section>
 

@@ -3,45 +3,56 @@ import React, { useState, useEffect } from 'react';
 import "./BlogGrid.scss"
 import Button from './Button.jsx';
 
-export default function BlogGrid({ posts, limit, title }) {
+export default function BlogGrid({ limit, title, cat }) {
 	if (!limit) {
 		limit = 1000
 	}
-	const [categorys, setCategorys] = useState(null);
-	const [postToShow, setPostToShow] = useState(posts);
-	useEffect(() => {
+	const [categories, setCategories] = useState([]);
+	const [posts, setPosts] = useState({});
+	const [postToShow, setPostToShow] = useState([]);
+	const [selectedCategory, setSelectedCategory] = useState(cat);
 
+	useEffect(() => {
+	if (!categories.length) {
 		fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/categories`)
 		.then(res => res.json())
-		.then(res => {
-			setCategorys(res.data)
-		})
-	  }, []);
-	
-	function handleCat(id) {
-		let toShow
-		if (id == "all") {
-			toShow = posts
-		} else {
-			toShow = posts.filter(el => el.attributes.category.data && el.attributes.category.data.id == id )
-		}
-		setPostToShow(toShow)
-		handleNav(id)
+		.then(res => setCategories(res.data));
 	}
+	}, []);
 
-	function handleNav(id) {
-		const allNavBtn = document.querySelectorAll('nav span')
-		allNavBtn.forEach(el => el.classList.remove('active'))
-		const btnToActive = document.querySelector(`[data-catid="${id}"]`)
-		btnToActive.classList.add('active')
-	}
+	useEffect(() => {
+		console.log('test');
+		fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populate=*&sort=publishedAt:desc`)
+		  .then(res => res.json())
+		  .then(res => {
+			setPosts(res.data);
+			console.log(res.data);
+			setPostToShow(
+				selectedCategory
+				  ? res.data.filter(post => post.attributes.category.data ? post.attributes.category.data.id === selectedCategory : null )
+				  : res.data
+			  );
+		  });
+	  }, []);
+
+	useEffect(() => {
+		if (posts.length) {
+			setPostToShow(
+				selectedCategory
+				? posts.filter(post => post.attributes.category.data ? post.attributes.category.data.id === selectedCategory : null )
+				: posts
+			);
+		}
+	}, [selectedCategory]);
+	
 	return (
+		
 		<section className="post container-lg p-0 BlogGrid">
 			<div className="row gy-3">
 				<h2>{title}</h2>
 				<nav className="col-12">
-					<span className='active' onClick={() => handleCat("all")} data-catid="all">Tout</span>
-					{categorys && categorys.map((cat, key) => <span key={key} onClick={() => handleCat(cat.id)} data-catid={cat.id}>{cat.attributes.name}</span>)}
+					<span className={ selectedCategory ? '' : 'active'} onClick={() => setSelectedCategory(null)} data-catid="all">Tout</span>
+					{categories && categories.map((cat, key) => <span className={ cat.id == selectedCategory ? 'active' : ''} key={key} onClick={() => setSelectedCategory(cat.id)} data-catid={cat.id}>{cat.attributes.name}</span>)}
 				</nav>
 				{postToShow && postToShow.length > 0 ? postToShow.map((post, key) => key < limit ? <BlogGridItem post={post} key={key} /> : null) : (<p>Aucune réalisation</p>)}
 				<div className="d-flex mt-2">

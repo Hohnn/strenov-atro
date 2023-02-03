@@ -5,14 +5,14 @@ import Footer from '../../components/Footer.astro';
 import BlogGrid from "../../components/BlogGrid.jsx"
 
 
-export async function getStaticPaths() {
+/* export async function getStaticPaths() {
 
 	const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts`).then(res => res.json()).then(res => res.data)
 	return  posts.map(post =>  ({params : {slug:post.attributes.slug}}))
-}
+} */
 const {slug} =  Astro.params
 
-const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populate=*`).then(res => res.json()).then(res => res.data)
+
 
 const post  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?filters[slug]=${slug}&populate=*`).then(res => res.json()).then(res => res.data[0])
 
@@ -51,7 +51,7 @@ const API_URL = import.meta.env.PUBLIC_POKEAPI;
 					<img src="" alt="">
 				</div>
 				<div class="col-12 mt-5">
-					<BlogGrid posts={posts} title={'Les autres réalisations'} limit={3} client:visible/>
+					<BlogGrid title={'Les autres réalisations'} limit={3} cat={post.attributes.category.data.id} client:visible/>
 				</div>
 				
 			</div>
