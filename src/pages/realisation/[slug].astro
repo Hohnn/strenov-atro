@@ -17,7 +17,7 @@ const {slug} =  Astro.params
 
 const post  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?filters[slug]=${slug}&populate=*`).then(res => res.json()).then(res => res.data[0])
 
-const published = new Date(post.attributes.date).toLocaleDateString('fr-FR', {year: 'numeric', month: 'long', day: 'numeric'})
+const published = post.attributes.date ? new Date(post.attributes.date).toLocaleDateString('fr-FR', {year: 'numeric', month: 'long', day: 'numeric'}) : null
 
 const images = post.attributes.images.data
 
@@ -39,7 +39,9 @@ const video = post.attributes.video.data
 				<div class="col-12">
 					<div class="hero">
 						<h1>{post.attributes.title}</h1>
+						{published && (
 						<span>{published}</span>
+						)}
 					</div>
 				</div>
 				<div class="col-12 my-4">
