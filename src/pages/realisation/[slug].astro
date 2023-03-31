@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import BlogGrid from "../../components/BlogGrid.jsx"
+import VideoPlayer from "../../components/VideoPlayer.jsx"
 
 
 /* export async function getStaticPaths() {
@@ -16,11 +17,16 @@ const {slug} =  Astro.params
 
 const post  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?filters[slug]=${slug}&populate=*`).then(res => res.json()).then(res => res.data[0])
 
-const published = new Date(post.attributes.publishedAt).toLocaleDateString('fr-FR', {year: 'numeric', month: 'long', day: 'numeric'})
+const published = new Date(post.attributes.date).toLocaleDateString('fr-FR', {year: 'numeric', month: 'long', day: 'numeric'})
 
 const images = post.attributes.images.data
 
 const API_URL = import.meta.env.PUBLIC_POKEAPI;
+
+console.log(post.attributes );
+
+const video = post.attributes.video.data
+
 
 ---
 
@@ -33,7 +39,7 @@ const API_URL = import.meta.env.PUBLIC_POKEAPI;
 				<div class="col-12">
 					<div class="hero">
 						<h1>{post.attributes.title}</h1>
-						<span>{`Publié le ${published}`}</span>
+						<span>{published}</span>
 					</div>
 				</div>
 				<div class="col-12 my-4">
@@ -47,9 +53,14 @@ const API_URL = import.meta.env.PUBLIC_POKEAPI;
 						</div>
 					)
 				})}
-				<div class="col-12">
-					<img src="" alt="">
+
+				{video && (
+				<div class="col-12 mt-4">
+					<VideoPlayer url={video.attributes.url} client:visible/>
 				</div>
+				)}
+				
+				
 				<div class="col-12 mt-5">
 					<BlogGrid title={'Les autres réalisations'} limit={3} cat={post.attributes.category.data.id} client:visible/>
 				</div>
