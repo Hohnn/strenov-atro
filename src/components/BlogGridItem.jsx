@@ -7,7 +7,8 @@ export default function BlogGridItem({ post }) {
 	if (img) {
 		thumb = img.attributes.formats.small.url
 	}
-	let date = new Date(post.attributes.date).toLocaleDateString('fr-FR', {year: 'numeric', month: 'long'})
+	
+	let date = post.attributes.date ? new Date(post.attributes.date).toLocaleDateString('fr-FR', {year: 'numeric', month: 'long'}) : null
 	const API_URL = import.meta.env.PUBLIC_POKEAPI;
 	return (
 		<div className="col-lg-4 BlogGridItem">
@@ -15,7 +16,9 @@ export default function BlogGridItem({ post }) {
 				<a href={`/realisation/${post.attributes.slug}`}>
 					<div className="card-img">
 						{img && <img src={thumb } alt="preview"></img>}
+						{date && (
 						<span>{date}</span>
+						)}
 					</div>
 					<h2>
 						{post.attributes.title}
