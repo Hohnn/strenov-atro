@@ -9,7 +9,7 @@ import { faHammer, faTrowelBricks, faPenRuler, faPencil } from '@fortawesome/fre
 /* const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?populate=*&sort=publishedAt:desc`).then(res => res.json()).then(res => res.data) */
 ---
 
-<Layout title="ST Rénov">
+<Layout title="ST Rénov | Menuiserie, Isolation, Aménagement intérieur à Caen" desc="Découvrez ST RENOV à Feuguerolles-Bully, près de Caen (14), votre partenaire de confiance pour la menuiserie intérieure et extérieure. Avec une solide expertise acquise au fil des années, Thibault SAMSON, le gérant de l'entreprise, vous guide avec des conseils avisés et des solutions techniques pour réaliser vos projets. Contactez-nous pour transformer vos idées en réalité.">
 	<Header/>
 	
 	<main>
@@ -24,8 +24,8 @@ import { faHammer, faTrowelBricks, faPenRuler, faPencil } from '@fortawesome/fre
 				<div class="col-md-6 g-5 g-md-2 d-flex">
 					<div class="hero-text px-lg-5">
 						<h1>Vos projets sont les miens</h1>
-						<h2>Choisissez ST RÉNOV pour des solutions personnalisées à vos envies. </h2>
-						<Button href="/realisations" title="Découvrir"/>
+						<h2>Choisissez ST RÉNOV pour des solutions personnalisées à vos envies.</h2>
+						<Button href={Astro.url.origin + '/realisations'} title="Découvrir"/>
 					</div>
 				</div>
 			</div>
@@ -44,14 +44,22 @@ import { faHammer, faTrowelBricks, faPenRuler, faPencil } from '@fortawesome/fre
 				<div class="col-md-6 g-5 g-md-2 d-flex">
 					<div class="hero-text hero-desc">
 						<ul>
-							<li><FontAwesomeIcon icon={faHammer} className="fs-6" />
-                                Menuiserie</li>
-							<li><FontAwesomeIcon icon={faTrowelBricks} className="fs-6"/>
-                                Isolation</li>
-							<li><FontAwesomeIcon icon={faPenRuler} className="fs-6"/>
-                                Parquet</li>
-							<li><FontAwesomeIcon icon={faPencil} className="fs-6"/>
-                                Aménagement intérieur</li>
+							<li>
+                                <FontAwesomeIcon icon={faHammer} className="fs-6" />
+                                <h3>Menuiserie</h3>
+                            </li>
+							<li>
+                                <FontAwesomeIcon icon={faTrowelBricks} className="fs-6"/>
+                                <h3>Isolation</h2>
+                            </li>
+							<li>
+                                <FontAwesomeIcon icon={faPenRuler} className="fs-6"/>
+                                <h3>Parquet</h2>
+                            </li>
+							<li>
+                                <FontAwesomeIcon icon={faPencil} className="fs-6"/>
+                                <h3>Aménagement intérieur</h2>
+                            </li>
 						</ul>
 					</div>
 				</div>
@@ -142,9 +150,15 @@ import { faHammer, faTrowelBricks, faPenRuler, faPencil } from '@fortawesome/fre
                 font-size: 1.8rem;
                 font-weight: bold;
                 color: $brown;
+                display: flex;
+                align-items: center;
                 svg {
                     height: 20px;
                     margin-right: 0.5rem;
+                }
+
+                h3 {
+                    margin: 0;
                 }
             }
         }

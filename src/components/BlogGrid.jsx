@@ -58,38 +58,38 @@ export default function BlogGrid({ limit, title, cat }) {
 					postToShow.map((post, key) => key < limit ? <BlogGridItem post={post} key={key} /> : null) 
 					: 
 					(
-						<div class="ph-item">
-							<div class="ph-col-4">
-								<div class="ph-picture"></div>
-								<div class="ph-row">
-									<div class="ph-col-8 big"></div>
-									<div class="ph-col-4 empty big"></div>
-									<div class="ph-col-10"></div>
-									<div class="ph-col-2 empty"></div>
-									<div class="ph-col-6"></div>
-									<div class="ph-col-6 empty"></div>
+						<div className="ph-item">
+							<div className="ph-col-4">
+								<div className="ph-picture"></div>
+								<div className="ph-row">
+									<div className="ph-col-8 big"></div>
+									<div className="ph-col-4 empty big"></div>
+									<div className="ph-col-10"></div>
+									<div className="ph-col-2 empty"></div>
+									<div className="ph-col-6"></div>
+									<div className="ph-col-6 empty"></div>
 								</div>
 							</div>
-							<div class="ph-col-4">
-								<div class="ph-picture"></div>
-								<div class="ph-row">
-									<div class="ph-col-8 big"></div>
-									<div class="ph-col-4 empty big"></div>
-									<div class="ph-col-10"></div>
-									<div class="ph-col-2 empty"></div>
-									<div class="ph-col-6"></div>
-									<div class="ph-col-6 empty"></div>
+							<div className="ph-col-4">
+								<div className="ph-picture"></div>
+								<div className="ph-row">
+									<div className="ph-col-8 big"></div>
+									<div className="ph-col-4 empty big"></div>
+									<div className="ph-col-10"></div>
+									<div className="ph-col-2 empty"></div>
+									<div className="ph-col-6"></div>
+									<div className="ph-col-6 empty"></div>
 								</div>
 							</div>
-							<div class="ph-col-4">
-								<div class="ph-picture"></div>
-								<div class="ph-row">
-									<div class="ph-col-8 big"></div>
-									<div class="ph-col-4 empty big"></div>
-									<div class="ph-col-10"></div>
-									<div class="ph-col-2 empty"></div>
-									<div class="ph-col-6"></div>
-									<div class="ph-col-6 empty"></div>
+							<div className="ph-col-4">
+								<div className="ph-picture"></div>
+								<div className="ph-row">
+									<div className="ph-col-8 big"></div>
+									<div className="ph-col-4 empty big"></div>
+									<div className="ph-col-10"></div>
+									<div className="ph-col-2 empty"></div>
+									<div className="ph-col-6"></div>
+									<div className="ph-col-6 empty"></div>
 								</div>
 							</div>
 						</div>

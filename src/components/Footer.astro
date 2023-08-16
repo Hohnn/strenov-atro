@@ -15,11 +15,11 @@ import Button from './Button.jsx';
 				</div>
 			</div>
 			<div class="col-12 col-md-4 cat py-3">
-				<a href="/">Accueil</a>
-				<a href="/realisations">Réalisations</a>
+				<a href={Astro.url.origin + "/"}>Accueil</a>
+				<a href={Astro.url.origin + "/realisations"}>Réalisations</a>
 			</div>
 			<div class="col-12 col-md-4 contact justify-content-center justify-content-md-end">
-				<Button href={"/contact"} title={"Contact"}></Button>
+				<Button href={Astro.url.origin + "/contact"} title={"Contact"}></Button>
 			</div>
 			<div class="col-12 text-center my-3 ">
 				<span >Copyright © 2022 ST RÉNOV</span>

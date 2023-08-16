@@ -4,20 +4,20 @@ import Button from '../components/Button.jsx';
 
 <header>
 	<div class="top">
-		<h3><small><a href="/realisations">Voir les dernières réalisations</a></small></h3>
+		<h3><small><a href={Astro.url.origin + '/realisations'}>Voir les dernières réalisations</a></small></h3>
 	</div>
 	<div class="container">
 
 	<div class="navbar justify-content-center justify-content-md-between px-md-0">
-		<a href="/">
+		<a href={Astro.url.origin + '/'}>
 			<img class="logo" src="/assets/img/logo_mini.png" alt="logo st rénov">
 		</a>
 		
 		<nav>
-			<a href="/">Accueil</a>
-			<a href="/realisations">Réalisations</a>
+			<a href={Astro.url.origin + '/'}>Accueil</a>
+			<a href={Astro.url.origin + '/realisations'}>Réalisations</a>
 			<!-- <a href="">About</a> -->
-			<Button href="/contact" title="Contact"></Button>
+			<Button href={Astro.url.origin + '/contact'} title="Contact"></Button>
 		</nav>
 	</div>
 </div>
