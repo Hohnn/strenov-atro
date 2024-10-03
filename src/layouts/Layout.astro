@@ -1,4 +1,5 @@
 ---
+import { log } from 'astro/dist/core/logger/core';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export interface Props {
@@ -7,6 +8,50 @@ export interface Props {
 }
 
 const { title, desc } = Astro.props;
+
+import fs from 'fs';
+
+function importPosts() {
+	fetch(`${import.meta.env.PUBLIC_STRAPI_URL}/api/posts?populate=*&sort=publishedAt:desc`)
+	.then(res => res.json())
+	.then(res => {
+		if (res.data) {
+			const stats = fs.statSync("./src/_data/posts.json");
+			const mtime = stats.mtime;
+			let dateExpired = new Date(mtime)
+			dateExpired.setDate(dateExpired.getHours() + 1)
+
+			if (dateExpired > new Date() && !res.data.some(el => new Date(el.attributes.updatedAt) > new Date(mtime))) {
+				return
+			}
+
+			fs.writeFileSync('./src/_data/posts.json', JSON.stringify(res.data))
+		}
+	})
+}
+
+async function importCateg() {
+	fetch(`${import.meta.env.PUBLIC_STRAPI_URL}/api/categories`)
+	.then(res => res.json())
+	.then(res => {
+		if (res.data) {
+			const stats = fs.statSync("./src/_data/categories.json");
+			const mtime = stats.mtime;
+			let dateExpired = new Date(mtime)
+			dateExpired.setDate(dateExpired.getHours() + 1)
+
+			if (dateExpired > new Date() && !res.data.some(el => new Date(el.attributes.updatedAt) > new Date(mtime))) {
+				return
+			}
+
+			fs.writeFileSync('./src/_data/categories.json', JSON.stringify(res.data))
+		}
+	})
+	
+}
+
+/* importPosts()
+importCateg() */
 
 ---
 

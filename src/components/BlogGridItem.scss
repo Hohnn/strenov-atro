@@ -1,70 +1,97 @@
 @import '../layouts/variable';
+
 .BlogGridItem {
-	display: flex;
-	.link-card {
-		list-style: none;
-		display: flex;
-		padding: 0.15rem;
-		background-color: white;
-		background-image: var(--accent-gradient);
-		background-size: 400%;
-		border-radius: 0.5rem;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
-	}
+    display: flex;
 
-	.card-img {
-		overflow: hidden;
-		border-radius: 0.3rem 0.3rem 0 0;
-		position: relative;
-		span {
-			position: absolute;
-			bottom: 0;
-			right: 0;
-			background-color: rgba(255, 255, 255, 0.851);
-			padding: 0.2rem 0.4rem;
-			font-size: 0.9rem;
-			text-transform: capitalize;
-			border-radius: 0.3rem 0 0 0;
-		}
-	}
+    .link-card {
+        list-style: none;
+        display: flex;
+        flex-grow: 1;
+        background-color: white;
+        background-image: var(--accent-gradient);
+        background-size: 400%;
+        border-radius: 0.5rem;
+        background-position: 100%;
+        transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    }
 
-	img {
-		width: 100%;
-		aspect-ratio: 4/3;
-		object-fit: cover;
-		transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    .card-img {
+        overflow: hidden;
+        border-radius: 0.3rem;
+        position: relative;
 
-	}
+        span {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.851);
+            padding: 0.2rem 0.4rem;
+            font-size: 0.9rem;
+            text-transform: capitalize;
+            border-radius: 0 0 0 0.3rem;
+        }
 
-	.link-card > a {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: 1rem 1.3rem;
-		border-radius: 0.35rem;
-		color: $brown;
-		background-color: white;
-	}
-	h2 {
-		margin: 0;
-		margin-top: 1rem;
-		font-size: 1.5rem;
-		font-family: $font-family-serif;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	p {
-		margin-top: 0.5rem;
-		margin-bottom: 0;
-		color: #444;
-		font-size: 1rem;
-	}
+        img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
 
-	.link-card:is(:hover, :focus-within) h2 {
-		color: black;
-	}
-	.link-card:is(:hover, :focus-within) img {
-		transform: scale(105%);
-	}
+        }
+
+        .desc {
+            position: absolute;
+            bottom: 0;
+            color: white;
+            z-index: 10;
+            padding: 0.6rem;
+            width: 100%;
+
+            &::after {
+                content: "";
+                background: linear-gradient(180deg, #ffffff00 0%, #000000ad 100%);
+                inset: 0;
+                position: absolute;
+                z-index: -1;
+            }
+        }
+    }
+
+
+
+
+
+    .link-card>a {
+        width: 100%;
+        text-decoration: none;
+        line-height: 1.4;
+        border-radius: 0.35rem;
+        color: $brown;
+        background-color: white;
+
+    }
+
+    h2 {
+        margin: 0;
+        margin-top: 1rem;
+        font-size: 1.5rem;
+        font-family: $font-family-serif;
+        transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    p {
+        margin-top: 0.5rem;
+        margin-bottom: 0;
+        color: #ffffffeb;
+        font-size: 1rem;
+    }
+
+    /* .link-card:is(:hover, :focus-within) h2 {
+    color: black;
+} */
+
+    .link-card:is(:hover, :focus-within) img {
+        transform: scale(105%);
+    }
 }

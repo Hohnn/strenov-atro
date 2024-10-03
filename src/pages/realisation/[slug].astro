@@ -5,28 +5,28 @@ import Footer from '../../components/Footer.astro';
 import BlogGrid from "../../components/BlogGrid.jsx"
 import VideoPlayer from "../../components/VideoPlayer.jsx"
 
-
-/* export async function getStaticPaths() {
-
-	const posts  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts`).then(res => res.json()).then(res => res.data)
-	return  posts.map(post =>  ({params : {slug:post.attributes.slug}}))
-} */
 const {slug} =  Astro.params
 
+let acticle;
 
-
-const post  =  await fetch(`${import.meta.env.PUBLIC_POKEAPI}/api/posts?filters[slug]=${slug}&populate=*`).then(res => res.json()).then(res => res.data[0])
+try {
+	acticle = await fetch(`${import.meta.env.PUBLIC_STRAPI_URL}/api/posts?populate=*&filters[slug][$eq]=${slug}`)
+	.then(res => res.json())
+	.then(res => {
+		if (res.data) {
+			return res.data[0]
+		}
+	})
+} catch (error) {
+  return Astro.redirect('/404');
+}
+const post = acticle
 
 const published = post.attributes.date ? new Date(post.attributes.date).toLocaleDateString('fr-FR', {year: 'numeric', month: 'long', day: 'numeric'}) : null
 
 const images = post.attributes.images.data
 
-const API_URL = import.meta.env.PUBLIC_POKEAPI;
-
-console.log(post.attributes );
-
 const video = post.attributes.video.data
-
 
 ---
 
@@ -51,7 +51,7 @@ const video = post.attributes.video.data
 					
 					return (
 						<div class={((key + 1) % 3 == 0 ? 'col-md-12 ' : "col-md-6 ") + "g-3"}>
-							<img src={(key + 1) % 3 == 0 ? img.attributes.url : img.attributes.formats.large.url } data-zoomable data-zoom-src={img.attributes.url} class={`img-fluid rounded workImg ` + ((key + 1) % 3 == 0 ? 'big' : '')} alt={post.attributes.title + ' image ' + (key + 1)}>
+							<img src={(key + 1) % 3 == 0 ? img.attributes.url : img.attributes.formats.medium.url } data-zoomable data-zoom-src={img.attributes.url} class={`img-fluid rounded workImg ` + ((key + 1) % 3 == 0 ? 'big' : '')} alt={post.attributes.title + ' image ' + (key + 1)}>
 						</div>
 					)
 				})}
@@ -64,7 +64,7 @@ const video = post.attributes.video.data
 				
 				
 				<div class="col-12 mt-5">
-					<BlogGrid title={'Les autres réalisations'} limit={3} cat={post.attributes.category.data.id} client:visible/>
+					<BlogGrid title={'Les autres réalisations'} limit={3} cat={post.attributes.category.data.id} client:load/>
 				</div>
 				
 			</div>

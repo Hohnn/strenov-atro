@@ -1,15 +1,9 @@
 import React from 'react';
 import "./BlogGridItem.scss"
 export default function BlogGridItem({ post }) {
-	/* console.log(post.attributes.category.data); */
-	let img = post.attributes.cover.data
-	let thumb
-	if (img) {
-		thumb = img.attributes.formats.small.url
-	}
-	
+	let img = post.attributes.cover.data.attributes
+	let thumb = post.attributes.cover.data.attributes.formats.small.url
 	let date = post.attributes.date ? new Date(post.attributes.date).toLocaleDateString('fr-FR', {year: 'numeric', month: 'long'}) : null
-	const API_URL = import.meta.env.PUBLIC_POKEAPI;
 	return (
 		<div className="col-lg-4 BlogGridItem">
 			<article className="link-card">
@@ -19,13 +13,16 @@ export default function BlogGridItem({ post }) {
 						{date && (
 						<span>{date}</span>
 						)}
+						<div className="desc">
+						<h2>
+							{post.attributes.title}
+						</h2>
+						<p>
+							{post.attributes.content}
+						</p>
 					</div>
-					<h2>
-						{post.attributes.title}
-					</h2>
-					<p>
-						{post.attributes.content}
-					</p>
+					</div>
+					
 				</a>
 			</article>
 		</div>
